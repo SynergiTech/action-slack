@@ -21,7 +21,7 @@ inputs:
     default: ""
   author_name:
     description: User name for slack notification.
-    default: 8398a7@action-slack
+    default: ""
   text:
     description: You can overwrite text.
     default: ""

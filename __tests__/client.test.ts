@@ -12,45 +12,43 @@ import {
   Always,
 } from '../src/client';
 
-const fixedFields = () => {
+const fixedFields = (hasGithub: boolean=true) => {
+  const sha = 'b24f03a32e093fe8d55e23cfd0bb314069633b2f';
+  const ref = hasGithub
+    ? `${sha.substring(0, 7)} [#19] support for multiple user mentions`
+    : sha;
+
   return [
+    {
+      short: false,
+      title: 'commit',
+      value:
+        `<https://github.com/synergitech/action-slack/commit/b24f03a32e093fe8d55e23cfd0bb314069633b2f|${ref}>`,
+    },
     {
       short: true,
       title: 'repo',
-      value: '<https://github.com/8398a7/action-slack|8398a7/action-slack>',
+      value: '<https://github.com/synergitech/action-slack|synergitech/action-slack>',
     },
-    {
-      short: true,
-      title: 'message',
-      value: '[#19] support for multiple user mentions',
-    },
-    {
-      short: true,
-      title: 'commit',
-      value:
-        '<https://github.com/8398a7/action-slack/commit/b24f03a32e093fe8d55e23cfd0bb314069633b2f|b24f03a32e093fe8d55e23cfd0bb314069633b2f>',
-    },
-    { short: true, title: 'author', value: '839<8398a7@gmail.com>' },
+    { short: true, title: 'author', value: '839 <8398a7@gmail.com>' },
     {
       short: true,
       title: 'action',
       value:
-        '<https://github.com/8398a7/action-slack/commit/b24f03a32e093fe8d55e23cfd0bb314069633b2f/checks|action>',
+        '<https://github.com/synergitech/action-slack/commit/b24f03a32e093fe8d55e23cfd0bb314069633b2f/checks|action>',
     },
-    { short: true, title: 'eventName', value: process.env.GITHUB_EVENT_NAME },
-    { short: true, title: 'ref', value: process.env.GITHUB_REF },
     { short: true, title: 'workflow', value: process.env.GITHUB_WORKFLOW },
   ];
 };
 
-const getTemplate: any = (text: string) => {
+const getTemplate: any = (text: string, hasGithub: boolean=true) => {
   return {
     text,
     attachments: [
       {
         author_name: '',
         color: '',
-        fields: fixedFields(),
+        fields: fixedFields(hasGithub),
       },
     ],
     username: '',
@@ -64,9 +62,9 @@ const successMsg = ':white_check_mark: Succeeded GitHub Actions';
 const cancelMsg = ':warning: Cancelled GitHub Actions';
 const failMsg = ':no_entry: Failed GitHub Actions';
 
-describe('8398a7/action-slack', () => {
+describe('synergitech/action-slack', () => {
   beforeEach(() => {
-    process.env.GITHUB_REPOSITORY = '8398a7/action-slack';
+    process.env.GITHUB_REPOSITORY = 'synergitech/action-slack';
   });
 
   it('has no mention', async () => {
@@ -342,7 +340,7 @@ describe('8398a7/action-slack', () => {
       channel: '',
     };
     const client = new Client(withParams, undefined, '');
-    const payload = getTemplate(`${successMsg}\n`);
+    const payload = getTemplate(`${successMsg}\n`, false);
     payload.attachments[0].color = 'good';
     payload.attachments[0].fields = payload.attachments[0].fields.filter(
       (field: any) => !['message', 'author'].includes(field.title),

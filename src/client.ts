@@ -115,43 +115,30 @@ export class Client {
       ref: sha,
     });
     const author = commit?.data.commit.author;
+    const ref = commit
+      ? `${sha.substring(0, 7)} ${commit.data.commit.message}`
+      : sha;
 
     return this.filterField(
       [
+        {
+          title: 'commit',
+          value: `<https://github.com/${owner}/${repo}/commit/${sha}|${ref}>`,
+          short: false,
+        },
         this.repo,
-        commit
-          ? {
-              title: 'message',
-              value: commit.data.commit.message,
-              short: true,
-            }
-          : undefined,
-        this.commit,
         author
           ? {
               title: 'author',
-              value: `${author.name}<${author.email}>`,
+              value: `${author.name} <${author.email}>`,
               short: true,
             }
           : undefined,
         this.action,
-        this.eventName,
-        this.ref,
         this.workflow,
       ],
       undefined,
     );
-  }
-
-  private get commit(): Field {
-    const { sha } = github.context;
-    const { owner, repo } = github.context.repo;
-
-    return {
-      title: 'commit',
-      value: `<https://github.com/${owner}/${repo}/commit/${sha}|${sha}>`,
-      short: true,
-    };
   }
 
   private get repo(): Field {
@@ -173,18 +160,6 @@ export class Client {
       value: `<https://github.com/${owner}/${repo}/commit/${sha}/checks|action>`,
       short: true,
     };
-  }
-
-  private get eventName(): Field {
-    return {
-      title: 'eventName',
-      value: github.context.eventName,
-      short: true,
-    };
-  }
-
-  private get ref(): Field {
-    return { title: 'ref', value: github.context.ref, short: true };
   }
 
   private get workflow(): Field {
