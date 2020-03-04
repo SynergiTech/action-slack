@@ -1,10 +1,10 @@
 # action-slack
 
-![](https://github.com/8398a7/action-slack/workflows/build-test/badge.svg)
-![](https://github.com/8398a7/action-slack/workflows/Slack%20Mainline/badge.svg)
-![](https://img.shields.io/github/license/8398a7/action-slack?color=brightgreen)
-![](https://img.shields.io/github/v/release/8398a7/action-slack?color=brightgreen)
-[![codecov](https://codecov.io/gh/8398a7/action-slack/branch/master/graph/badge.svg)](https://codecov.io/gh/8398a7/action-slack)
+![](https://github.com/synergitech/action-slack/workflows/build-test/badge.svg)
+![](https://img.shields.io/github/license/synergitech/action-slack?color=brightgreen)
+![](https://img.shields.io/github/v/release/synergitech/action-slack?color=brightgreen)
+
+**This is a fork to change the appearance of the output for our own desired appearance**
 
 You can notify slack of GitHub Actions.  
 For v3 or later under development, write the document [here](https://action-slack.netlify.com).
