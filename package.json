@@ -10,14 +10,14 @@
     "format-check": "prettier --check **/*.ts",
     "lint": "eslint src/**/*.ts",
     "pack": "ncc build -m",
-    "test": "jest && codecov",
+    "test": "jest",
     "test-for-local": "jest",
     "all": "npm run build && npm run format && npm run lint && npm run pack && npm test",
     "release": "npm run build && npm run pack"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/8398a7/action-slack.git"
+    "url": "git+https://github.com/synergitech/action-slack.git"
   },
   "keywords": [
     "actions",

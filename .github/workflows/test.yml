@@ -15,12 +15,12 @@ jobs:
       - run: npm install
       - run: npm run all
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+          GITHUB_TOKEN: ${{ github.token }}
       - uses: 8398a7/action-slack@v2
         with:
           status: ${{ job.status }}
+          mention: ${{ github.actor }}
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ github.token }}
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
         if: always()
