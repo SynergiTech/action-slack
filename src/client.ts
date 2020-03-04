@@ -73,7 +73,7 @@ export class Client {
     const template = await this.payloadTemplate();
     template.attachments[0].color = 'warning';
     template.text += this.mentionText(this.with.mention, Cancelled);
-    template.text += ':warning: Canceled GitHub Actions\n';
+    template.text += ':warning: Cancelled GitHub Actions\n';
     template.text += text;
 
     return template;

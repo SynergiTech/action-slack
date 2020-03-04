@@ -61,7 +61,7 @@ const getTemplate: any = (text: string) => {
 };
 
 const successMsg = ':white_check_mark: Succeeded GitHub Actions';
-const cancelMsg = ':warning: Canceled GitHub Actions';
+const cancelMsg = ':warning: Cancelled GitHub Actions';
 const failMsg = ':no_entry: Failed GitHub Actions';
 
 describe('8398a7/action-slack', () => {
